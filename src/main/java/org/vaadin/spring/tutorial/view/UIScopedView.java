@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Button;
@@ -24,9 +23,6 @@ public class UIScopedView extends VerticalLayout implements View {
 
     @Autowired
     private Greeter greeter;
-    @Autowired
-    MainMenu mainMenu;
-    private Button button;
 
     @PostConstruct
     void init() {
@@ -34,11 +30,7 @@ public class UIScopedView extends VerticalLayout implements View {
         setSpacing(true);
         addComponent(new Label("This is a UI scoped view. Greeter says: "
                 + greeter.sayHello()));
-        button = new Button("add");
-        addComponent(button);
-        button.addClickListener((Button.ClickEvent event) -> {
-            doLogin();
-        });
+
     }
 
     @Override
@@ -46,9 +38,5 @@ public class UIScopedView extends VerticalLayout implements View {
         // This view is constructed in the init() method()
     }
 
-    private void doLogin() {
 
-        mainMenu.addMenuItems();
-
-    }
 }
