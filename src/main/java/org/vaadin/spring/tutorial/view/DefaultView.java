@@ -4,19 +4,25 @@ import javax.annotation.PostConstruct;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.vaadin.spring.tutorial.menu.MainMenu;
+import org.vaadin.spring.sidebar.annotation.FontAwesomeIcon;
+import org.vaadin.spring.sidebar.annotation.SideBarItem;
 
 @SpringView(name = DefaultView.VIEW_NAME)
+
+@SideBarItem(sectionId = Sections.REPORTING,
+        caption = "View 1")
+@FontAwesomeIcon(FontAwesome.GLOBE)
+@UIScope
 public class DefaultView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "";
-    @Autowired
-    MainMenu mainMenu;
     private Button button;
 
     @PostConstruct
@@ -25,7 +31,7 @@ public class DefaultView extends VerticalLayout implements View {
         button = new Button("add");
         addComponent(button);
         button.addClickListener((Button.ClickEvent event) -> {
-            doLogin();
+            
         });
     }
 
@@ -34,9 +40,4 @@ public class DefaultView extends VerticalLayout implements View {
         // This view is constructed in the init() method()
     }
 
-    private void doLogin() {
-
-        mainMenu.addMenuItems();
-
-    }
 }

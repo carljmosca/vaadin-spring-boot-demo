@@ -6,13 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import org.vaadin.spring.sidebar.annotation.FontAwesomeIcon;
+import org.vaadin.spring.sidebar.annotation.SideBarItem;
 import org.vaadin.spring.tutorial.Greeter;
 import org.vaadin.spring.tutorial.ViewGreeter;
 
 @SpringView(name = ViewScopedView.VIEW_NAME)
+@SideBarItem(sectionId = Sections.REPORTING,
+        caption = "ViewScoped View")
+@FontAwesomeIcon(FontAwesome.ANCHOR)
+@UIScope
 public class ViewScopedView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "view";
 
